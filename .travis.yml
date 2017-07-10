@@ -1,0 +1,27 @@
+# Just apply Travis-CI for these branches
+branches:
+  only:
+  - master
+  - experimental
+
+language: node_js
+
+node_js:
+  - 4
+  - 5
+  - 6
+
+install:
+  - cd client/ && npm install && cd ..
+  - cd server/ && npm install && cd ..
+  - cd test/ && npm install && cd ..
+
+script:
+  - cd test/ && npm test
+
+notifications:
+  email:
+    recipients:
+      - ibc@aliax.net
+    on_success: change
+    on_failure: always
